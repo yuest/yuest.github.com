@@ -1,0 +1,41 @@
+!!! 5
+html
+  head
+    title 宇极Yuest's
+    link(rel="stylesheet", href="/static/css/style.css")
+    link(rel="stylesheet", href="/static/css/highlight.css")
+    meta(name="viewport", content="width=device-width,initial-scale=1")
+    script
+      WebFontConfig = { google: { families: [ 'Shanti::latin', 'Signika::latin', 'Ubuntu+Mono::latin' ] } };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+  body
+    div#fixed-wrap
+      div.container
+        header
+          a#logo(href='/')
+            img(src="/static/i/logo.png", alt="宇极Yuest's logo")
+          h1 宇极Yuest's
+          p yet another simple man working for the beauty of the web.
+        aside
+          nav
+            ul
+              li
+                a(href="/resume/") Résumé
+              li
+                a(href="/slides/") Slides
+        a#back-to-top(href="#") ▲ Top
+    div#main-container.container
+      article#from-markdown!=document
+    script(src="/static/js/lib.js")
+    script
+      __serverRendered = true;
+    script(src="/static/js/yuest.js")
+    script
+      hljs.initHighlightingOnLoad();

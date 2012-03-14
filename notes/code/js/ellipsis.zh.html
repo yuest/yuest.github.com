@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><title>宇极Yuest's</title><link rel="stylesheet" href="/static/css/style.css"><link rel="stylesheet" href="/static/css/highlight.css"><meta name="viewport" content="width=device-width,initial-scale=1"><script>WebFontConfig = { google: { families: [ 'Shanti::latin', 'Signika::latin', 'Ubuntu+Mono::latin' ] } };
+(function() {
+  var wf = document.createElement('script');
+  wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.type = 'text/javascript';
+  wf.async = 'true';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(wf, s);
+})();
+</script></head><body><div id="fixed-wrap"><div class="container"><header><a id="logo" href="/"><img src="/static/i/logo.png" alt="宇极Yuest's logo"></a><h1>宇极Yuest's</h1><p>yet another simple man working for the beauty of the web.</p></header><aside><nav><ul><li><a href="/resume/">Résumé</a></li><li><a href="/slides/">Slides</a></li></ul></nav></aside><a id="back-to-top" href="#">▲ Top</a></div></div><div id="main-container" class="container"><article id="from-markdown"><h1 id="firefoxellipsis">让 Firefox 支持 ellipsis （限长文字溢出加省略号）</h1>
+
+<!-- date: 2011-03-27 00:00 -->
+
+<p>text-overflow: ellipsis 效果在网页上还是挺常用的吧，就是在需要限定宽度的一行文字中，如果文字过长，就截取到相应长度，后面加三个点（… 或 &amp;hellips;）。比如在表格什么的会常用到。这样的效果可以使用下面的 CSS 实现：</p>
+
+<pre><code>.ellipsis {
+    display: block; /* or inline-block 必须是 block 或 inline-block*/
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;    /* Opera */
+    text-overflow:    ellipsis;    /* IE, Safari (WebKit) */
+}
+</code></pre>
+
+<p>如果需要考虑支持 IE6 的话（杀了我吧），<code>width</code> 属性是必须设置的，比如 <code>width: 100%;</code>。</p>
+
+<p>遗憾的是，<a href="https://developer.mozilla.org/en/CSS/text-overflow">Firefox 并不支持 text-overflow: ellipsis;</a>，到 4.0 都不支持。我写了一个 jQuery 插件来在 Firefox 上实现这个效果。基本上是参照 <a href="http://devongovett.wordpress.com/2009/04/06/text-overflow-ellipsis-for-firefox-via-jquery/">Devon Govett 的</a>，只是在效率上做了优化，用了二分查找的思路（O(logN) 的复杂度，oh yeah～），而原来那个是一个字符一个字符地尝试，汗死= =||</p>
+
+<p>另外，如果改变容器宽度，文字长度也应该相应改变才对，不过我把这事留给插件使用者了，只要在 resize 过后再调用一下插件就好了。</p>
+
+<p>以下是代码：</p>
+
+<div data-gist-id="889145"><a href="http://gist.github.com/889145">ellipsis.js on GitHub Gist</a></div></article></div><script src="/static/js/lib.js"></script><script>__serverRendered = true;
+</script><script src="/static/js/yuest.js"></script><script>hljs.initHighlightingOnLoad();
+</script></body></html>

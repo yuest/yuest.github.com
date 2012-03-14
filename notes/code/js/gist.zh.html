@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head><title>宇极Yuest's</title><link rel="stylesheet" href="/static/css/style.css"><link rel="stylesheet" href="/static/css/highlight.css"><meta name="viewport" content="width=device-width,initial-scale=1"><script>WebFontConfig = { google: { families: [ 'Shanti::latin', 'Signika::latin', 'Ubuntu+Mono::latin' ] } };
+(function() {
+  var wf = document.createElement('script');
+  wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.type = 'text/javascript';
+  wf.async = 'true';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(wf, s);
+})();
+</script></head><body><div id="fixed-wrap"><div class="container"><header><a id="logo" href="/"><img src="/static/i/logo.png" alt="宇极Yuest's logo"></a><h1>宇极Yuest's</h1><p>yet another simple man working for the beauty of the web.</p></header><aside><nav><ul><li><a href="/resume/">Résumé</a></li><li><a href="/slides/">Slides</a></li></ul></nav></aside><a id="back-to-top" href="#">▲ Top</a></div></div><div id="main-container" class="container"><article id="from-markdown"><h1 id="gistembedcodejquery">无阻塞异步载入的 Gist Embed Code （jQuery 实现）</h1>
+
+<!-- date: 2011-03-28 00:00 -->
+
+<p>GitHub Gist 是个很好用的分享简单代码的工具，在 <a href="http://gist.github.com/">gist.github.com</a> 上发布分享的代码，还有旧版本存档（有 revisions 自然就会期待在线查看 diff 嘛，不过却没有，这点稍稍有点不方便），还可以有个 Embed Code 功能能提供一个 <code>&lt;script src=...&gt;</code> 标签让你把代码放到自己的网页上。</p>
+
+<p>不过这个 Embed Code 是同步载入的，就是说浏览器渲染到此标签会等待此脚本载入并执行完成后再继续渲染后面的代码，并且网页上其他静态文件如 CSS 中的背景图片等貌似也会被阻塞下载，由此产生不太好的体验。并且此脚本就是两个 document.write 函数调用，我总觉的应该避免此函数的使用——要是在页面 DOM 载入完成之后调用，原本的网页内容就会被覆盖掉。</p>
+
+<p>我写了几行代码（一个 jQuery 小插件），让它变成异步载入，在需要嵌入 Gist 代码的地方加入一个 div：<code>&lt;div data-gist=your_gist_id&gt;&lt;a href="http://gist.github.com/your_gist_id"&gt;your_gist_filename on GitHub Gist&lt;/a&gt;&lt;/div&gt;</code>，代码载入完成后会把代码加到这个 div 内。</p>
+
+<div data-gist-id=889189><a href="http://gist.github.com/889189">889189 on GitHub Gist</a></div>
+
+<p>呃。看来，蛋疼的我很有把一件事情搞复杂的天赋……囧。</p></article></div><script src="/static/js/lib.js"></script><script>__serverRendered = true;
+</script><script src="/static/js/yuest.js"></script><script>hljs.initHighlightingOnLoad();
+</script></body></html>

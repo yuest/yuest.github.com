@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head><title>宇极Yuest's</title><link rel="stylesheet" href="/static/css/style.css"><link rel="stylesheet" href="/static/css/highlight.css"><meta name="viewport" content="width=device-width,initial-scale=1"><script>WebFontConfig = { google: { families: [ 'Shanti::latin', 'Signika::latin', 'Ubuntu+Mono::latin' ] } };
+(function() {
+  var wf = document.createElement('script');
+  wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.type = 'text/javascript';
+  wf.async = 'true';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(wf, s);
+})();
+</script></head><body><div id="fixed-wrap"><div class="container"><header><a id="logo" href="/"><img src="/static/i/logo.png" alt="宇极Yuest's logo"></a><h1>宇极Yuest's</h1><p>yet another simple man working for the beauty of the web.</p></header><aside><nav><ul><li><a href="/resume/">Résumé</a></li><li><a href="/slides/">Slides</a></li></ul></nav></aside><a id="back-to-top" href="#">▲ Top</a></div></div><div id="main-container" class="container"><article id="from-markdown"><h1 id="linuxvirtualbox">在 Linux 主机中使用 VirtualBox</h1>
+
+<!-- date: 2011-03-19 00:00 -->
+
+<h2 id="usbcontroller">USB Controller</h2>
+
+<p>在 Linux 主机中使用 VirtualBox，默认的 USB Controller 不能使用，也就是说不能在虚拟机里的系统上用 USB。这不是扯的吗，我的网银咋办？我的 iPod 咋同步？Google 了一下，知道了解决问题需要安装 extension packs，以下是解决步骤：</p>
+
+<ol>
+<li>到<a href="http://www.virtualbox.org/wiki/Downloads">VirtualBox 官网下载页面</a>下载这个 Extension Packs.</li>
+<li>用以下命令安装： <code>sudo VBoxManage extpack install &lt;下载到的文件名&gt;</code></li>
+<li>将你 Linux 上使用的用户添加到 vboxusers 组。</li>
+<li>在某个虚拟机的设置里 USB 页面 Enable USB 2.0 (EHCI) Controller。</li>
+</ol>
+
+<p>打完收工。</p>
+
+<h2 id="vdi">拷贝 vdi 文件</h2>
+
+<p>可以直接使用 <code>cp</code> 命令，也可以在文件管理器里直接复制粘贴 vdi 文件，也可以用命令 <code>VBoxManage clonehd "DiskToClone.vdi" "ClonedDisk.vdi"</code>，这些方法都是拷贝 vdi 文件，这时因为文件的 uuid 一样，无法再次添加到 VirtualBox，需要运行如下命令重新设置这个文件的 UUID：</p>
+
+<pre><code>VBoxManage internalcommands sethduuid copied.vdi
+</code></pre>
+
+<h2 id="linux">拷贝过来的 Linux 无法使用网卡</h2>
+
+<p>删除 <code>/etc/udev/rules.d/70-persistent-net.rules</code> 文件重启，因为这个文件会缓存网卡信息，拷到新机上就不对了。</p></article></div><script src="/static/js/lib.js"></script><script>__serverRendered = true;
+</script><script src="/static/js/yuest.js"></script><script>hljs.initHighlightingOnLoad();
+</script></body></html>

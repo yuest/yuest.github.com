@@ -1,0 +1,5 @@
+*.swp
+node_modules
+package.json
+app.js
+utils.js
