@@ -1,0 +1,12 @@
+rss(version="2.0")
+  channel
+    title 宇极Yuest's
+    link http://yue.st/blog
+    description 宇极Yuest's | 博客 Blog
+    language zh-CN
+    lastBuildDate= lastBuildDate
+  each item in items
+    item
+      title= item.title
+      link= item.link
+      description!= '<![CDATA[' + item.html + ']]>'

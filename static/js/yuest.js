@@ -61,8 +61,14 @@
 ;(function(loc) {
   if (loc.search && ~loc.search.indexOf('edit')) {
     $(function() {
-      var $editor = $('<div id=editor />').appendTo('body')
-      $editor.html('<form method="PUT"><textarea></textarea></form><input type="submit" value="Submit" />')
+      var $editor = $('<div id=editor><form method="PUT"><textarea></textarea></form><input type="submit" value="Submit" /></div>').appendTo('body')
+      , $textarea = $('textarea', $editor)
+
+      $.get('/source' + loc.pathname.replace(/\.html$/, '.md')).then(function(ww) {
+        $textarea.val(ww)
+      }, function(e) {
+        console.log(e);
+      })
     })
   }
 }(location))
